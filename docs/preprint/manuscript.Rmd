@@ -1,0 +1,283 @@
+---
+title             : "Exercising choice over feedback schedules during practice is not advantageous for motor learning"
+shorttitle        : "Choice and feedback characteristics"
+
+# note: |
+#   \vspace{5ex}
+#   \textcolor{orange}{\textbf{\emph{NOT PEER-REVIEWED}}}
+
+authornote: |
+  \vspace{-0.5cm}
+  \noindent \addORCIDlink{Laura St. Germain}{0000-0002-5513-4183} \newline
+  \noindent \addORCIDlink{Brad McKay}{0000-0002-7408-2323} \newline
+  \noindent \addORCIDlink{Joshua G.A. Cashaback}{0000-0002-8642-6648} \newline
+  \noindent \addORCIDlink{Michael J. Carter}{0000-0002-0675-4271}
+  \noindent Data and code: https://github.com/cartermaclab/expt_sc-feedback-characteristics \vspace{2ex} \newline
+  \noindent \textbf{Corresponding authors:} Michael J. Carter (michaelcarter@mcmaster.ca) and Laura St. Germain (stgerml@mcmaster.ca).
+  
+
+abstract: |
+  The idea that there is a self-controlled learning advantage, where individuals demonstrate improved motor learning after exercising choice over an aspect of practice compared to no-choice groups, has different causal explanations according to the OPTIMAL theory or an information-processing perspective. Within OPTIMAL theory, giving learners choice is considered an autonomy-supportive manipulation that enhances expectations for success and intrinsic motivation. In the information-processing view, choice allows learners to engage in performance-dependent strategies that reduce uncertainty about task outcomes. To disentangle these potential explanations, we provided participants in choice and yoked groups with error or graded feedback (Experiment 1) and binary feedback (Experiment 2) while learning a rapid reaching task with spatial and timing goals. Across both experiments (N = 228 participants), we did not find evidence to support a self-controlled learning advantage. Exercising choice during practice did not increase perceptions of autonomy, competence, or intrinsic motivation, nor did it lead to more accurate error estimation skills. Both error and graded feedback facilitated skill acquisition and learning, whereas no improvements from pre-test performance were found with binary feedback. Finally, the impact of graded and binary feedback on perceived competence highlights a potential dissociation of motivational and informational roles of feedback. Although our results regarding self-controlled practice conditions are difficult to reconcile with either the OPTIMAL theory or the information-processing perspective, they are consistent with a growing body of evidence that strongly suggests self-controlled conditions are not an effective approach to enhance motor performance and learning.
+  
+keywords          : "Self-controlled, Knowledge of results, OPTIMAL theory, Retention"
+#wordcount         : "2978 for Introduction, Results, and Discussion"
+
+bibliography      : ["../references.bib", "../r-references.bib"]
+
+floatsintext      : yes
+figurelist        : no
+tablelist         : no
+footnotelist      : no
+linenumbers       : no
+mask              : no
+draft             : no
+
+csl               : "`r system.file('rmd', 'apa7.csl', package = 'papaja')`"
+documentclass     : "apa7"
+classoption       : "doc, donotrepeattitle"
+#fontsize          : 11pt
+output            : papaja::apa6_pdf
+
+header-includes   :
+  - \usepackage{pdflscape}
+  - \usepackage{setspace}
+ # - \pagewiselinenumbers
+  - \raggedbottom
+
+  - \renewcommand\author[1]{}
+  - \renewcommand\affiliation[1]{}
+  - \authorsnames[1, 1, 1, 1, 1, 1, {2,3}, 1]{Laura St. Germain, Brad McKay, Andrew Poskus, Allison Williams, Olena Leshchyshen, Sherry Feldman, Joshua G.A. Cashaback, Michael J. Carter\vspace{2ex}}
+  - \authorsaffiliations{{Department of Kinesiology, McMaster University}, {Department of Biomedical Engineering, University of Delaware}, {Interdisciplinary Neuroscience Graduate Program, University of Delaware}}
+---
+
+```{r setup, include = FALSE}
+library(papaja)
+library(kableExtra)
+library(tidyverse)
+```
+
+```{r analysis-preferences}
+# Seed for random number generation
+set.seed(42)
+knitr::opts_chunk$set(cache.extra = knitr::rand_seed)
+```
+
+The underlying source of errors in skilled actions are often ambiguous and difficult to assign as the learner must rely on noisy and delayed sensory information. Feedback from an external source, such as a coach or computer display, can facilitate or augment this process [@sigrist2013]. Knowledge of results feedback [@salmoni1984] can provide varying amounts of information to learners depending on its characteristics. Error feedback provides precise information about the magnitude and direction of the error (e.g., -42 cm), graded feedback provides coarse information about either the magnitude or direction of the error (e.g., "too far"), and binary feedback indicates only success or failure information (e.g., "miss") [@luft2014]. When to provide this feedback is often decided by an external agent; however, this feedback decision can also be made by the learner, a form of self-controlled learning. These self-controlled feedback schedules have typically enhanced motor skill learning compared to yoked feedback schedules, wherein learners experience the feedback schedule created by a self-controlled counterpart, but without any choice [see @sanli2013; @stemarie2019 for reviews].
+
+Why self-controlled learning advantages emerge has garnered considerable attention in the motor skill learning literature. Within their OPTIMAL (Optimizing performance through intrinsic motivation and attentional learning) theory of motor learning, @wulf2016 have argued that providing participants the opportunity to exercise choice, as in a self-controlled group, creates a virtuous cycle. Specifically, choice leads to increased (perceived) autonomy, leading to enhanced expectancies (e.g., perceived competence) and increased (intrinsic) motivation. These motivational influences lead to improved motor performance, creating a positive feedback loop that ultimately enhances motor learning compared to those not given the same choice opportunities. Support for this view has been drawn from experimental work where participants exercise choice over task-irrelevant or incidental choices. Exercising choice over the color of golf balls to putt [@lewthwaite2015 Experiment 1] or the mat underneath a target [@wulf2018 Experiment 1], which picture to hang in a lab [@lewthwaite2015 Experiment 2], hand order in a maximal force production task [@iwatsuki2017], which photos to look at while running [@iwatsuki2018], and the order of exercises to perform [@wulf2014] have been suggested to improve motor performance or learning. Other research, however, have failed to replicate this benefit of task-irrelevant or incidental choices on motor performance or learning [@carter2017b; @mckay2020a; @grand2017; @mckay2020b].
+
+Rather than a motivational account, others have forwarded an information-processing explanation. From this perspective, exercising choice allows learners to tailor practice to their individual needs [@chiviacowsky2002; @chiviacowsky2005] by engaging in performance-contingent strategies [@carter2014; @carter2016; @laughlin2015; @pathania2019] to reduce uncertainty about movement outcomes [@barros2019; @carter2014; @carter2017a; @carter2017b; @grand2015]. Evidence for this view has come from experiments that showed the timing of the feedback decision relative to task performance matters [@carter2014; @chiviacowsky2005], that task-relevant choices are more effective than task-irrelevant choices [@carter2017b; cf. @wulf2018 Experiment 2], that interfering with information-processing activities during [@couvillion2020; @woodard2020] or after [@carter2017a; @woodard2020] task performance eliminates self-controlled learning benefits, and that the ability to accurately estimate one’s performance is enhanced in choice compared to yoked groups [@carter2012; @carter2014]. Thus, further investigation is required to test predictions from these two explanations to better understand why exercising choice during practice confers an advantage for motor skill learning.
+
+To dissociate between the motivational and information-processing accounts of the self-controlled learning advantage, we provided participants in choice and yoked (i.e., no-choice) groups with error or graded feedback (Experiment 1) and binary feedback (Experiment 2) during the acquisition of a rapid aiming task. Motor learning was assessed using delayed (~24 hours) retention and transfer tests. If the OPTIMAL theory is correct, we hypothesized that the characteristics of one's feedback schedule *would not matter* for the self-controlled learning advantage as this advantage arises from the opportunity for choice--a common feature of all choice groups. Thus, we predicted all choice groups would demonstrate superior performance and learning compared to the yoked groups. Alternatively, if the information-processing account is correct, we hypothesized that the characteristics of one's feedback schedule *would matter* for the self-controlled learning advantage as feedback with greater informational value would be more effective for reducing uncertainties about movement outcomes. Thus, we predicted that choice over an error feedback schedule would be the most effective pairing for performance and learning. We also included self-report measures of perceptions of autonomy, competence, and intrinsic motivation, and assessments of error estimation abilities to respectively test auxiliary assumptions of the OPTIMAL theory and information-processing explanations.
+
+# Methods
+
+We report how we determined our sample size, all data exclusions (if any), all manipulations, and all measures in the study [@simmons2012]. All data and `R` scripts can be accessed here: https://github.com/cartermaclab/expt_sc-feedback-characteristics.
+
+## Participants
+
+### Experiment 1
+
+One hundred and fifty-two right-handed [@oldfield1971], healthy adults participated in Experiment 1 ($M_{age}$ = 20.64 years, $SD_{age}$ = 2.45, 88 females). Sample size was determined from an *a-priori* power analysis using the *ANOVA: fixed effects, main effects and interactions* option in G*Power [@faul2009] with the following parameters: $\alpha$ = 0.05, $\beta$ = .20, $f$ = 0.23, numerator = 1, and groups = 2. This revealed a required sample of 151 participants. Our chosen effect size was based on a meta-analytic estimate ($f$ = .32) by @mckay2014; however, we used a more conservative estimate given the uncertainty of how choice would interact with our feedback characteristic manipulation. Participants were compensated $15 CAD or with course-credit for their time. All participants gave written informed consent and the experiment was approved by McMaster University’s Research Ethics Board.
+
+### Experiment 2
+
+A new sample of 76 right-handed [@oldfield1971], healthy adults participated in Experiment 2 ($M_{age}$ = 20.18 years, $SD_{age}$ = 3.18, 47 females). Sample size was selected so group size matched that used in Experiment 1. Participants were compensated $15 CAD or with course-credit for their time. All participants gave written informed consent and the experiment was approved by McMaster University’s Research Ethics Board.
+
+## Task
+
+In Experiments 1 and 2, participants sat in a chair facing a monitor (1920x1080 resolution) with their left arm in a custom manipulandum that restricted movement to the horizontal plane. Their elbow was bent at approximately 90° and they grasped a vertical handle with their left hand. Handle position was adjusted as needed to ensure the central axis of rotation was about the elbow. The task required a rapid "out-and-back" movement such that the reversal happened at $40^\circ$ (in pre-test, acquisition, and retention) or $60^\circ$ (in transfer). The starting point for all trials was $0^\circ$. Participants were instructed to make a smooth movement to the reversal and back without hesitating when reversing their movement. The movement time goal to the reversal was always 225 ms. The task and instructions were similar to those used by Sherwood [-@sherwood1996; -@sherwood2009]. Vision of the manipulandum and limb were occluded during all phases of the experiment. Angular displacement for the elbow was collected via a potentiometer attached to the axis of rotation of the custom manipulandum. Potentiometer data were digitally sampled at 1000 Hz (National Instruments PCIe-6321) using a custom LabVIEW program and stored for offline analysis.
+
+## Procedure
+
+### Experiment 1
+
+The first 76 participants were randomly assigned to either the Choice+Error-Feedback group ($n$ = 38; $M_{age}$ = 20.24 years, $SD_{age}$ = 2.37, 22 females) or the Choice+Graded-Feedback group ($n$ = 38; $M_{age}$ = 20.76 years, $SD_{age}$ = 3.02, 26 females). This is typical in the self-controlled learning literature as the self-controlled participants’ self-selected feedback schedules are required for providing feedback to the participants in the yoked (i.e., control) groups. The remaining 76 participants were randomly assigned to either the Yoked+Error-Feedback group ($n$ = 38; $M_{age}$ = 20.53 years, $SD_{age}$ = 2.13, 23 females) or the Yoked+Graded-Feedback group ($n$ = 38; $M_{age}$ = 21.03 years, $SD_{age}$ = 2.32, 22 females).
+
+Data collection consisted of two sessions separated by approximately 24 hours.[^1] Session one included a pre-test (12 trials) and an acquisition phase (72 trials). Session two included the delayed retention (12 trials) and transfer (12 trials) tests. No feedback about motor performance was provided in pre-test, retention, or transfer. Prior to the pre-test, all participants received instructions about the task and its associated spatial and timing goals. Additionally, half of the participants in each group were randomly selected to estimate their performance on the spatial and timing goals after each trial in the pre-test. Only a subset of participants were asked to estimate their performance in pre-test to mitigate the potential that doing so would prompt participants to adopt this strategy during the experiment as error estimation has been suggested [e.g., @chiviacowsky2005] to be adopted spontaneously by participants controlling their feedback schedule. However, asking participants to estimate their performance during pre-test is necessary to be able to assess how this skill develops as a function of one's practice condition.
+
+[^1]: Six participants (three Choice+Error-Feedback and three Choice+Graded-Feedback) had their second session completed approximately 48 hours later because a snowstorm closed the University.
+
+Participants were reminded of the instructions about the task and its associated goals at the start of the acquisition phase. Group specific instructions regarding feedback were also provided. Participants in the Choice+Error-Feedback group and the Choice+Graded-Feedback group were told they could choose their feedback schedule, with the restriction that they must select feedback on 24 of the 72 acquisition trials. They were informed that if the number of remaining feedback requests equaled the number of remaining acquisition trials, these trials would default to feedback trials. This feedback restriction was implemented to ensure the relative frequency of feedback was equated across all groups. Similar restrictions have been used in past research involving multiple choice groups [e.g., @chiviacowsky2005]. Participants in the Yoked+Error-Feedback group and the Yoked+Graded-Feedback group were told they may or may not receive feedback following a trial based on a predetermined schedule. Thus, participants in these groups were not aware that their feedback schedule was actually created by a participant in a corresponding choice group. While this yoking procedure ensures that the total number of feedback trials and their relative placement during acquisition are identical, the content of the feedback reflected each participant's own performance. Error feedback for the spatial and timing goals was provided as the difference between the participant's actual performance and the task goal (i.e., constant error). Graded feedback for the spatial goal was provided as "too short" if performance was < 40 degrees (or 60 degrees in transfer), "hit" if exactly 40 degrees, and "too far" if > 40 degrees. For the timing goal, graded feedback was provided as "too fast" when performance was < 225 ms, "hit" if exactly 225 ms, and "too slow" if > 225 ms. All participants were shown a sample feedback display that corresponded to their experimental group and were asked to interpret it aloud for the researcher to verify understanding.
+
+```{r fig1, echo = FALSE, fig.cap = "(ref:fig1-caption)", fig.align = "center", out.height = "45%"}
+knitr::include_graphics("../../figs/fig1.pdf")
+```
+
+(ref:fig1-caption) \small \onehalfspacing \textbf{Overview of a typical acquisition trial for the choice groups.} The sequence of events a participant in the choice groups experienced during the acquisition phase. Trials began by informing participants the trial number (500 ms) they were on in acquisition. Shortly after, the text "Get Ready!" appeared on the screen and 800 ms later a visual go-signal was presented in the form of a green circle in the center of the screen. Participants began their movement when ready after seeing the visual go-signal as we were not interested in reaction time. While participants completed their rapid out-and-back movement, the computer screen was blank. Upon returning to the starting position, a red circle appeared in the center of the screen. A 2000 ms feedback delay interval was used and this interval was followed by the feedback prompt. The feedback prompt also displayed an updated counter representing the number of feedback trials they had left. If the number of remaining feedback trials matched the number of acquisition trials left, these trials automatically defaulted to feedback trials. On trials where feedback was not requested, a blank screen **(A)** was shown for 3000 ms. When feedback was selected, feedback was provided for both the spatial and timing goals according to their experimental group. The error feedback group **(B)** saw their constant error, the graded feedback group **(C)** saw either "too far" or "too short" for the spatial goal and "too fast" or "too slow" for the timing goal, and the binary feedback group **(D)** saw either "hit" or "miss" for the task goals. The sequence of events was the same for the yoked groups with the exception they did not see a feedback prompt. The sequence of events was similar in pre-test, retention, and transfer except all trials were no-feedback trials.
+
+A typical acquisition trial (see Figure \@ref(fig:fig1)) began with the current trial number displayed (500 ms), followed by a visual "Get Ready!" and a visual go-signal (800 ms apart). Participants were free to begin their movement when ready following the visual go-signal (i.e., green circle) as this was not a reaction time task. The computer screen was blank while participants made their movement. When participants returned to the starting position, a red circle was displayed on the monitor. Following a 2000 ms feedback delay interval, the feedback decision prompt was presented for the self-controlled groups. If feedback was not selected, a blank screen was displayed for 3000 ms. If feedback was selected (or imposed on the yoked groups), it was also displayed for 3000 ms.
+
+Before the retention and transfer tests, participants were reminded about the task and its associated goals. All participants were asked to estimate their performance after each trial in retention and transfer. After the pre-test, trials 12 and 72 in acquisition, and before the delayed retention test, participants answered a series of questions pertaining to perceived competence, task interest and enjoyment, and perceived autonomy. The perceived competence and task interest and enjoyment questions were from the Intrinsic Motivation Inventory [@mcauley1989; @ryan1982] and the perceived autonomy questions were used in earlier work [@barros2019; @carter2017b]. Cronbach's alpha values for each questionnaire at each time point are reported in Table \@ref(tab:table1).
+
+### Experiment 2
+
+Similar to Experiment 1, the first half of participants were assigned to the Choice+Binary-Feedback group ($n$ = 38; $M_{age}$ = 22.37 years, $SD_{age}$ = 3.13, 19 females) and the remaining participants were assigned to the Yoked+Binary-Feedback group ($n$ = 38; $M_{age}$ = 18.00 years, $SD_{age}$ = 0.93, 28 females). Binary feedback for the spatial goal was provided as "hit" if performance was exactly 40 degrees (or 60 degrees in transfer) and as "miss" for everything else. For the timing goal, binary feedback was provided as "hit" when performance was exactly 225 ms and as "miss" for everything else. Data collection was identical to that of Experiment 1, except in the acquisition instructions participants in both groups were shown a sample binary feedback display and were asked to interpret it aloud for the researcher to verify understanding.
+
+
+```{r table1, echo = FALSE, results = "asis"}
+table1 <- tibble::tibble(
+    c1 = c("Perceived autonomy",
+           "Perceived competence",
+           "Intrinsic motivation",
+           "Perceived autonomy",
+           "Perceived competence",
+           "Intrinsic motivation"),
+    c2 = c("0.68",
+           "0.86",
+           "0.86",
+           "0.39",
+           "0.92",
+           "0.91"),
+    c3 = c("0.81",
+           "0.93",
+           "0.90",
+           "0.73",
+           "0.88",
+           "0.91"),
+    c4 = c("0.80",
+           "0.95",
+           "0.92",
+           "0.79",
+           "0.91",
+           "0.93"),
+    c5 = c("0.83",
+           "0.94",
+           "0.93",
+           "0.85",
+           "0.91",
+           "0.94"),
+)
+table1 %>%
+  kbl(booktabs = TRUE,
+      escape = TRUE,
+      linesep = "\\addlinespace",
+      caption = "Cronbach's alpha for each questionnaire at each timepoint.",
+      col.names = c("Questionnaire",
+                  "After pre-test",
+                  "After block 1",
+                  "After block 6",
+                  "Before retention")
+  ) %>%
+  kable_styling(position = "left",
+                font_size = 11) %>%
+  column_spec(1, width = "12em") %>%
+  column_spec(2, width = "6em") %>%
+  column_spec(3, width = "6em") %>%
+  column_spec(4, width = "6em") %>%
+  column_spec(5, width = "7em") %>%
+  pack_rows("Experiment 1", 1, 3) %>%
+  pack_rows("Experiment 2", 4, 6) %>%
+  footnote(general = "Block 1 and 6 are from the acquisition phase.",
+           general_title = "Note.",
+           title_format = "italic",
+           footnote_as_chunk = TRUE
+           )
+```
+
+## Data Analysis
+
+Movement trajectories for all trials were visually inspected by a researcher and trials with errors (e.g., technical issues, moving before the "go" signal) were removed. A total of 4.03% (662/16146) and 3.73% (306/8208) of trials for Experiments 1 and 2 were removed, respectively. Trials were aggregated into blocks of 12 trials, resulting in one block of trials for pre-test, retention, and transfer, and six blocks of trials for acquisition. Our primary performance outcome variable was total error (E) [@henry1974; @henry1975] and was computed using the equation:
+\begin{equation}
+E = \sqrt{\sum{(x_{i} - T)^2 / n}}
+\end{equation}
+where $x_{i}$ is the score on the $i$th trial, $T$ is the target goal, and $n$ is the number of trials in a block.
+
+To test for performance differences in pre-test, retention, and transfer, total error for the spatial and timing goals were analyzed in separate mixed ANOVAs (*Experiment 1:* 2 Choice x 2 Feedback x 3 Test; *Experiment 2:* 2 Choice x 3 Test). To test for performance differences during acquisition, total error for the spatial and timing goals during acquisition were analyzed in separate mixed ANOVAs (*Experiment 1:* 2 Choice x 2 Feedback x 6 Block; *Experiment 2:* 2 Choice x 6 Block). Our primary psychological outcome variables were intrinsic motivation (i.e., interest/enjoyment), perceived competence, and perceived autonomy. The mean score of the responses for these constructs at each time point was calculated for each participant and analyzed in separate mixed ANOVAs (*Experiment 1:* 2 Choice x 2 Feedback x 4 Time; *Experiment 2:* 2 Choice x 4 Time). Of secondary interest, error estimation abilities were assessed as total error between a participant's estimation and actual performance in pre-test (50% of the participants in each group in Experiments 1 and 2), retention, and transfer (see **Supplementary A**).
+
+Alpha was set to .05 for all statistical analyses. Corrected degrees of freedom using the Greenhouse-Geisser technique are always reported for repeated measures with more than two levels. Generalized eta squared $(\eta_{G}^2)$ is provided as an effect size statistic [@bakeman2005; @lakens2013; @olejnik2003] for all omnibus tests. Post hoc comparisons were Holm-Bonferroni corrected to control for multiple comparisons. Statistical tests were conducted using `r cite_r("../r-references.bib")` were used in this project.
+
+# Results
+
+Model diagnostics of total error for the spatial and timing goals revealed skewed distributions. We therefore conducted sensitivity analyses using the shift function, which is a robust statistical method well-suited for skewed distributions [@rousselet2020; @wilcox2021]. The results of these analyses (see **Supplementary B**) were consistent with those of the mixed ANOVAs, which we report below.
+
+## Pre-test, retention, and transfer
+
+### Experiment 1
+
+Spatial (Fig. \@ref(fig:fig2)A) and timing (Fig. \@ref(fig:fig2)B) error decreased from the pre-test to the retention and transfer tests. There was a main effect of Test for spatial error, $F(1.33,196.52) = 40.20$, $p < .001$, $\eta_{G}^2 = .138$, where performance was less errorful in retention and transfer than pre-test ($p$'s < .001) and performance in retention was better than transfer ($p$ < .001). A main effect of Test was also found for timing error, $F(1.08,160.23) = 81.21$, $p < .001$, $\eta_{G}^2 = .245$, with pre-test performance more errorful than both retention and transfer ($p$'s < .001), and retention was less errorful than transfer ($p$ < .001).
+
+### Experiment 2
+
+Spatial (Fig. \@ref(fig:fig3)A) and timing (Fig. \@ref(fig:fig3)B) error did not change considerably from the pre-test to the retention and transfer tests. There were no significant main effects or interactions for either task goals.
+
+\vspace{4ex}
+
+```{r fig2, echo = FALSE, fig.cap = "(ref:fig2-caption)", fig.align = "center"}
+knitr::include_graphics("../../figs/fig2.pdf")
+```
+
+(ref:fig2-caption) \small \onehalfspacing \textbf{Experiment 1 data.} The Choice with error feedback (Choice+Error) group is shown in dark blue circles, the Choice with graded feedback (Choice+Graded) group is shown in light blue squares, the Yoked with error feedback (Yoked+Error) group is shown in red triangles, and the Yoked with graded feedback (Yoked+Graded) group is shown in yellow crosses. Error bars denote 95% bootstrapped confidence intervals. **(A)** Spatial total error (degrees) and **(B)** timing total error (ms) averaged across blocks and participants within each group. Dotted vertical lines denote the different experimental phases. Pre-test and acquisition occurred on Day 1 and retention and transfer occurred approximately 24-hours later on Day 2. Self-reported scores for perceived autonomy **(C)**, perceived competence **(D)**, and intrinsic motivation **(E)** after the pre-test and after blocks 1 and 6 of acquisition on Day 1, and before the retention test on Day 2. Scores could range on a Likert scale from 1 (Strongly disagree) to 7 (Strongly agree). Dots represent individual data points.
+
+<!-- \vspace{2ex} -->
+
+```{r fig3, echo = FALSE, fig.cap = "(ref:fig3-caption)", fig.align = "center"}
+knitr::include_graphics("../../figs/fig3.pdf")
+```
+(ref:fig3-caption) \small \onehalfspacing \textbf{Experiment 2 data.} The Choice with binary feedback (Choice+Binary) group is shown in green circles and the Yoked with binary feedback (Yoked+Binary) group is shown in purple squares. Error bars denote 95% bootstrapped confidence intervals. **(A)** Spatial total error (degrees) and **(B)** timing total error (ms) averaged across blocks and participants within each group. Dotted vertical lines denote the different experimental phases. Pre-test and acquisition occurred on Day 1 and retention and transfer occurred approximately 24-hours later on Day 2. Self-reported scores for perceived autonomy **(C)**, perceived competence **(D)**, and intrinsic motivation **(E)** after the pre-test and after blocks 1 and 6 of acquisition on Day 1, and before the retention test on Day 2. Scores could range on a Likert scale from 1 (Strongly disagree) to 7 (Strongly agree). Dots represent individual data points.
+
+\newpage
+
+## Acquisition
+
+### Experiment 1
+
+All groups of participants improved their performance of the spatial goal during the acquisition phase (Fig. \@ref(fig:fig2)A). This was supported by a significant main effect of Block, $F(2.41,357.13) = 60.18$, $p < .001$, $\eta_{G}^2 = .130$, where block 1 was less accurate than all other blocks ($p$'s $< .001$), block 2 was less accurate than all subsequent blocks ($p$'s $\leq .021$), and blocks 3 and 4 were more errorful than block 6 ($p$'s $\leq .015$). Timing error also decreased during the acquisition period (Fig. \@ref(fig:fig2)B). The significant main effect of Block, $F(1.75,259.59) = 55.44$, $p < .001$, $\eta_{G}^2 = .138$, was superseded by a significant Feedback x Block interaction, $F(1.75, 259.59) = 3.56$, $p = .035$, $\eta_{G}^2 = .010$. Post hoc comparisons showed that timing error for those receiving error feedback was reduced from block 1 in all subsequent blocks ($p$'s $< .001$), but performance plateaued from block 2 onward in acquisition ($p$'s $\geq .257$). Timing error for the participants that received graded feedback was also reduced from block 1 in all subsequent blocks ($p$'s $< .001$); however, these participants continued to improve across acquisition blocks as block 2 was more errorful than blocks 3 to 6 ($p$'s $\leq .028$).
+
+### Experiment 2
+
+Spatial (Fig. \@ref(fig:fig3)A) and timing (Fig. \@ref(fig:fig3)B) error remained relatively flat from block 1 to block 6 in the acquisition period. None of the main effects or interactions for either task goals were significant.
+
+## Psychological variables
+
+### Experiment 1
+
+Perceptions of autonomy (Fig. \@ref(fig:fig2)C) showed a slight decrease across time points, supported by a main effect of Time, $F(2.25,332.95) = 3.69$, $p < .022$, $\eta_{G}^2 = .003$. Perceived autonomy was higher after block 1 of acquisition compared to self-reported ratings prior to completing the retention test ($p = .031$). Self-ratings for perceived competence (Fig. \@ref(fig:fig2)D) were similar across groups after the pre-test, but then began to diverge after block 1 based on feedback characteristic. Main effects of Time, $F(1.92, 283.47) = 3.43$, $p = .036$, $\eta_{G}^2 = .006$, and Feedback, $F(1,148) = 47.36$, $p < .001$, $\eta_{G}^2 = .188$, were superseded by a Feedback x Time interaction, $F(1.92, 283.47) = 28.04$, $p < .001$, $\eta_{G}^2 = .050$. Perceived competence scores were not significantly different after the pre-test ($p = .232$); however, perceptions of competence were significantly lower in those participants receiving graded feedback compared to error feedback at all other time points ($p$'s $< .001$). Self-reported scores for intrinsic motivation (Fig. \@ref(fig:fig2)E) generally decreased after block 1, which was supported by a main effect of Time, $F(2.40,355.90) = 14.69$, $p < .001$, $\eta_{G}^2 = .012$. Intrinsic motivation scores initially increased following the pre-test to after block 1 ($p = .003$); however, scores after block 1 of acquisition were greater than those reported at the end of acquisition (i.e., block 6) and before retention ($p$'s $< .001$). Self-reported ratings were also lower before retention compared to after the pre-test ($p = .043$).
+
+### Experiment 2
+
+Self-reported scores for perceived autonomy (Fig. \@ref(fig:fig3)C) were similar across all time points. There were no main effects or interactions. Perceptions of competence (Fig. \@ref(fig:fig3)D) showed a considerable decrease after the pre-test, $F(1.85,136.91) = 106.10$, $p < .001$, $\eta_{g}^2 = .298$, where scores were significantly greater after the pre-test compared to all other time points ($p$'s $< .001$), and were higher after block 1 of acquisition than before retention ($p = .004$). Self-ratings for intrinsic motivation generally decreased across time points, which was supported by a main effect of Time, $F(2.37,175.55) = 15.31$, $p < .001$, $\eta_{G}^2 = .018$. Intrinsic motivation was higher after the pre-test than after block 6 of acquisition and before retention ($p$'s $< .001$), and higher after block 1 than after block 6 and before retention ($p$'s $< .026$).
+
+## Equivalence analysis
+
+Our main comparison of interest was between choice and no-choice (i.e., yoked groups). To evaluate the self-controlled learning effect observed across Experiments 1 and 2, Hedges' *g* for the spatial and timing goals were aggregated within each experiment while accounting for within-subject dependencies. Next, a random effects meta-analysis was conducted on the retention test data[^2] to generate a summary point estimate and 90% confidence intervals (CI). This resulted in an overall estimated effect of $g = .05$ (favoring self-controlled) and $90\% \,CI \,[-.12,.23]$.
+
+[^2]: We report an estimate for retention tests to facilitate comparison to a recent meta-analysis [@mckay2021] that produced estimated effects of self-controlled learning at retention specifically.
+
+Equivalence tests can be conducted to evaluate whether the observed differences are significantly smaller than a pre-determined smallest effect size of interest [see @harms2018 for a discussion]. Typically, a two one-sided tests procedure is used to compare the observed effect to upper and lower equivalence bounds, and if the effect is significantly smaller than both bounds then the hypothesis that the effect is large enough to be of interest is rejected [@lakens2017;@schuirmann1987]. However, we did not pre-specify a smallest effect of interest, so instead we report the 90% confidence intervals (see above). All effect sizes outside this interval would be rejected by the two-one sided tests procedure while all values inside the interval would not. Therefore, the present experiments can be considered inconsistent with all effects larger than $g = \pm.23$.
+
+# Discussion
+
+The purpose of the present experiments was to test between motivational and information-processing accounts of the putative self-controlled learning advantage [see @stemarie2019 for a review]. According to the OPTIMAL theory [@wulf2016], self-controlled practice or choice conditions are advantageous because the provision of choice increases perceptions of autonomy and competence, which increase intrinsic motivation and ultimately both motor performance and learning. Conversely, others have argued that self-controlled feedback is effective because it provides the opportunity to request feedback in a performance dependent way that reduces uncertainty about movement outcomes relative to task goals [@carter2014; @carter2017a; @grand2015]. In contrast to these predictions, we did not find evidence that providing learners with choice over their feedback schedule was beneficial for motor learning, despite collecting a much larger sample (*N* = 228 across both Experiments) than those commonly used in self-controlled learning experiments [median sample size *N* = 36 in a meta-analysis by @mckay2021] and motor learning experiments in general [median *n*/group = 11 in a review by @lohse2016]. Further, exercising choice in practice did not enhance perceptions of autonomy, competence, or intrinsic motivation, and also did not result in more accurate performance estimations in delayed tests of motor learning. Overall, we found no support for the OPTIMAL theory or information-processing perspective. Our results challenge the prevailing view that the self-controlled learning benefit is a robust effect.
+
+The failed replication of a self-controlled learning advantage was surprising given the dominant view for the past 25 years has been that it is a robust effect and one that should be recommended to coaches and practitioners [@sanli2013; @stemarie2019; @wulf2016]. Our findings are, however, consistent with a growing list of relatively large--often pre-registered--experiments that have not found self-controlled learning benefits [@bacelar2022; @grand2017; @leiker2019; @mckay2020a; @mckay2020b; @stgermain2022; @yantha2021]. One possible explanation for this discrepancy between earlier and more recent experiments may be that the self-controlled learning advantage was the result of underpowered designs, which has been highlighted as a problem in motor learning research [see @lohse2016 for a discussion]. When underpowered designs find significant results, they are prone to be false positives with inflated estimates of effects [@button2013; @lakens2014], which can be further exaggerated with questionable research practices such as *p*-hacking and selective reporting [e.g., @munafo2017; @simmons2011]. Thus, a self-controlled learning advantage may not actually exist. Alternatively, if one does exist then it seems likely it is a much smaller effect than originally estimated and requires considerably larger samples to reliability detect than those commonly used in motor learning research. Consistent with these ideas, a recent meta-analysis provided compelling evidence that the self-controlled learning advantage is not robust and its prominence in the motor learning literature is due to selective publication of statistically significant results [@mckay2021]. We estimated the overall effect of self-controlled practice in retention to be significantly smaller than any effect larger than $g = .23$. This is consistent with the estimates from @mckay2021 after accounting for publication bias ($g =$ -.11 to .26), which suggested either no effect or a small effect in an unknown direction. Taken together, we argue that it may be time for the self-controlled learning advantage to be considered a non-replicable effect in motor learning.
+
+Given our current replication failure with those in recent years [@bacelar2022; @grand2017; @leiker2019; @mckay2020a; @mckay2020b; @stgermain2022; @yantha2021] and the conclusions from @mckay2021, motivational (i.e., OPTIMAL theory) versus information-processing explanations seem moot. Nevertheless, the present results are incompatible with both perspectives. Specifically, having choice opportunities during practice did not enhance perceptions of autonomy, competence, or intrinsic motivation in either experiment, inconsistent with OPTIMAL theory. Similarly, self-controlled feedback schedules did not enhance error estimation skills (see **Supplementary A**) and choice did not interact with feedback characteristics, inconsistent with the information-processing perspective. Instead, the results from Experiments 1 and 2 suggest that feedback characteristics were a more important determinant of motor performance during acquisition and delayed tests of learning than the opportunity to choose. When feedback provided information about the direction of an error or when it contained both direction and magnitude of an error, participants were able to improve at the task throughout acquisition and retain these improvements in skill relative to pre-test. However, when feedback was binary and direction and magnitude of an error was absent, there was no improvement in skill from baseline levels. This is in contrast with past research that has shown people can learn motor tasks with binary feedback [e.g., @cashaback2017; @cashaback2019; @izawa2011]. One possible explanation for this discrepancy may be the amount of practice trials [@magill1986]. Practicing with binary feedback may inherently require a longer training period for learning to occur compared to graded and error feedback, which both have greater precision. Additionally, we used a strict criteria with binary feedback where any outcome other than zero error was considered a miss. Thus, binary feedback may be more effective when paired with a tolerance zone such as that used in the bandwidth technique [see @anderson2020 for a review; @cauraugh1993; @lee1990]. 
+
+Although unexpected, the influence of feedback characteristics on perceptions of competence may hint to a dissociation between informational and motivational impacts of knowledge-of-results feedback. In Experiment 1, participants who received graded feedback reported significantly lower perceptions of competence than participants who received error feedback. Yet, despite these lower expectations for success, the graded feedback groups did not demonstrate degraded performance or learning compared to the error feedback group. Participants in Experiment 2 who received binary feedback reported the lowest perceptions of competence and were also the only participants who did not show improvements in task performance from pre-test. Thus, future research is necessary to better understand this dissociation of informational and motivational influences of feedback characteristics and how it interacts with the task, individual, and environment.
+
+In two experiments we failed to observe the predicted benefits of self-controlled feedback on motor learning. Similarly, we failed to find the predicted motivational and informational consequences of choice in either experiment, challenging both the OPTIMAL theory and information-processing explanation of the so-called self-controlled learning advantage. Although the present experiments were not pre-registered, the analysis plan was determined prior to viewing the data. In addition, a suite of sensitivity analyses were conducted to determine the extent to which the present results depended on the chosen analysis methods (see **Supplementary B**). The sensitivity analyses supported the conclusions of the primary analyses and are consistent with research that has followed pre-registered analysis plans [@bacelar2022; @grand2017; @leiker2019; @mckay2020a; @mckay2020b; @stgermain2022; @yantha2021]. Lastly, our results and conclusions are in line with a recent meta-analysis [@mckay2021] that suggests the apparent benefits of self-controlled practice are due to selection bias rather than true effects.
+
+\vspace{2.5ex}
+
+# Funding
+
+This work was supported by the Natural Sciences and Engineering Research Council (NSERC) of Canada (RGPIN-2018-05589; MJC) and McMaster University. LSG was supported by an NSERC Postgraduate Scholarship. JGAC was supported by an NIH U45GM104941 grant. AW and AP were supported by NSERC Undergraduate Student Research Awards.
+
+# Conflicts of interest/Competing interests 
+
+None.
+
+# Availability of data, materials, and code
+
+Can be accessed here: https://github.com/cartermaclab/expt_sc-feedback-characteristics.
+
+# Authors' contributions using CRediT
+
+Laura St. Germain served as lead for data curation, formal analysis,investigation - performed experiment, project administration, and software - task programming, writing - original draft preparation, and writing - review and editing, contributed equally to conceptualization, methodology, validation, and visualization. Brad McKay contributed equally to conceptualization, methodology, validation, visualization, writing - original draft preparation, and writing - review and editing. Andrew Poskus served as a lead for investigation - performed experiment and served in a supporting role for writing- original draft preparation and writing - review and editing. Allison Williams served as a lead for investigation - performed experiment and served in a supporting role for writing - original draft preparation and writing - review and editing. Olena Leshchyshen contributed equally to investigation - performed experiment and served in a supporting role for writing - original draft preparation and writing - review and editing. Sherry Feldman contributed equally to investigation - performed experiment and served in a supporting role for writing - original draft preparation and writing - review and editing. Joshua G.A. Cashaback contributed equally to conceptualization,  methodology, writing - original  draft preparation, and writing - review and editing. Michael J. Carter served as lead for funding acquisition, resources, and supervision, contributed equally to conceptualization, methodology, validation, visualization, writing - original draft preparation, and writing - review and editing, and served in a supporting role for data curation, formal analysis, project administration, and software - task programming.
+
+# References
+
+\vspace{2ex}
+::: {#refs custom-style="Bibliography"}
+:::
