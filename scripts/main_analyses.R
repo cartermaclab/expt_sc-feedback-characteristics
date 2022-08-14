@@ -10,7 +10,7 @@
 #   Brad McKay
 #   Mike Carter
 #
-# Last update: March 30 2022
+# Last update: August 14 2022
 #
 # Website: https://www.cartermaclab.org
 # -------------------------------------------
@@ -137,7 +137,7 @@ expt2_acq_deg_lm
 
 # Timing goal
 expt2_acq_ms_lm <- afex::aov_ez(
-  "id", "p_mean_e_deg", expt2_performance_acq_p,
+  "id", "p_mean_e_ms", expt2_performance_acq_p,
   between = "group_id",
   within = "block_id"
 )
@@ -465,8 +465,8 @@ meta_timing_res <- metafor::rma(
   level = 90
 )
 
-meta_spatial_res
-meta_timing_res
+#meta_spatial_res
+#meta_timing_res
 
 # Meta-analysis for paper overall with spatial and timing goals collapsed
 meta_combined_res <- metafor::rma(
@@ -476,3 +476,22 @@ meta_combined_res <- metafor::rma(
   level = 90
 )
 meta_combined_res
+
+
+# Each experiment separate with spatial and timing goals collapsed
+#
+# Experiment 1
+meta_expt1_res <- metafor::rma(
+  yi,
+  vi,
+  data = meta_agg[1, ],
+  level = 90
+)
+
+# Experiment 2
+meta_expt2_res <- metafor::rma(
+  yi,
+  vi,
+  data = meta_agg[2, ],
+  level = 90
+)
