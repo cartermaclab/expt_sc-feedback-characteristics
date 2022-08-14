@@ -10,7 +10,7 @@
 #   Brad McKay
 #   Mike Carter
 #
-# Last update: March 30 2022
+# Last update: August 10 2022
 #
 # Website: https://www.cartermaclab.org
 # -------------------------------------------
@@ -109,6 +109,44 @@ expt1_performance_acq_g <- expt1_performance_acq_p %>%
     ci_low_ms = ggplot2::mean_cl_boot(p_mean_e_ms)$ymin,
     ci_upp_ms = ggplot2::mean_cl_boot(p_mean_e_ms)$ymax,
     .groups = "drop"
+  )
+
+# Number of hits during acquisition at the participant (p) and group (g) levels
+expt1_deg_hit_p <- expt1_performance_tib %>%
+  dplyr::filter(phase_id == 2) %>%
+  dplyr::mutate(hit = dplyr::if_else(
+    xi_deg > 39.99 & xi_deg < 40.01, 1, 0)) %>%
+  dplyr::group_by(id, group_id) %>%
+  dplyr::summarize(
+    n = n(),
+    sum_hit = sum(hit, na.rm = TRUE)
+  )
+
+expt1_deg_hit_g <- expt1_deg_hit_p %>%
+  dplyr::group_by(group_id) %>%
+  dplyr::summarize(
+    n = n(),
+    total = sum(sum_hit, na.rm = TRUE),
+    min = min(sum_hit, na.rm = TRUE),
+    max = max(sum_hit, na.rm = TRUE)
+  )
+
+expt1_ms_hit_p <- expt1_performance_tib %>%
+  dplyr::filter(phase_id == 2) %>%
+  dplyr::mutate(hit = dplyr::if_else(xi_ms == 225, 1, 0)) %>%
+  dplyr::group_by(id, group_id) %>%
+  dplyr::summarize(
+    n = n(),
+    sum_hit = sum(hit, na.rm = TRUE)
+  )
+
+expt1_ms_hit_g <- expt1_ms_hit_p %>%
+  dplyr::group_by(group_id) %>%
+  dplyr::summarize(
+    n = n(),
+    total = sum(sum_hit, na.rm = TRUE),
+    min = min(sum_hit, na.rm = TRUE),
+    max = max(sum_hit, na.rm = TRUE)
   )
 
 # QUESTIONNAIRE DATA
@@ -237,6 +275,44 @@ expt2_performance_acq_g <- expt2_performance_acq_p %>%
     ci_low_ms = ggplot2::mean_cl_boot(p_mean_e_ms)$ymin,
     ci_upp_ms = ggplot2::mean_cl_boot(p_mean_e_ms)$ymax,
     .groups = "drop"
+  )
+
+# Number of hits during acquisition at the participant (p) and group (g) levels
+expt2_deg_hit_p <- expt2_performance_tib %>%
+  dplyr::filter(phase_id == 2) %>%
+  dplyr::mutate(hit = dplyr::if_else(
+    xi_deg > 39.99 & xi_deg < 40.01, 1, 0)) %>%
+  dplyr::group_by(id, group_id) %>%
+  dplyr::summarize(
+    n = n(),
+    sum_hit = sum(hit, na.rm = TRUE)
+  )
+
+expt2_deg_hit_g <- expt2_deg_hit_p %>%
+  dplyr::group_by(group_id) %>%
+  dplyr::summarize(
+    n = n(),
+    total = sum(sum_hit, na.rm = TRUE),
+    min = min(sum_hit, na.rm = TRUE),
+    max = max(sum_hit, na.rm = TRUE)
+  )
+
+expt2_ms_hit_p <- expt2_performance_tib %>%
+  dplyr::filter(phase_id == 2) %>%
+  dplyr::mutate(hit = dplyr::if_else(xi_ms == 225, 1, 0)) %>%
+  dplyr::group_by(id, group_id) %>%
+  dplyr::summarize(
+    n = n(),
+    sum_hit = sum(hit, na.rm = TRUE)
+  )
+
+expt2_ms_hit_g <- expt2_ms_hit_p %>%
+  dplyr::group_by(group_id) %>%
+  dplyr::summarize(
+    n = n(),
+    total = sum(sum_hit, na.rm = TRUE),
+    min = min(sum_hit, na.rm = TRUE),
+    max = max(sum_hit, na.rm = TRUE)
   )
 
 
