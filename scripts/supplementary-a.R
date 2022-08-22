@@ -10,7 +10,7 @@
 #   Brad McKay
 #   Mike Carter
 #
-# Last update: August 13 2022
+# Last update: August 21 2022
 #
 # Website: https://www.cartermaclab.org
 # -------------------------------------------
@@ -252,11 +252,11 @@ expt1_deg_choice_p <- rogme::plot_hd_links(
 expt1_deg_choice_p
 
 # Choice versus yoked combine the 3 plots
-figS3A <- expt1_deg_choice_shift_ps +
+figS1A <- expt1_deg_choice_shift_ps +
   expt1_deg_choice_p +
   expt1_deg_choice_psf[[1]] +
   patchwork::plot_layout(ncol = 1)
-figS3A
+figS1A
 
 
 # Timing goal choice shift function
@@ -338,11 +338,11 @@ expt1_ms_choice_p <- rogme::plot_hd_links(
 expt1_ms_choice_p
 
 # Choice versus yoked combine the 3 plots
-figS4A <- expt1_ms_choice_shift_ps +
+figS2A <- expt1_ms_choice_shift_ps +
   expt1_ms_choice_p +
   expt1_ms_choice_psf[[1]] +
   patchwork::plot_layout(ncol = 1)
-figS4A
+figS2A
 
 
 # EXPERIMENT 2
@@ -426,11 +426,11 @@ expt2_deg_choice_p <- rogme::plot_hd_links(
 expt2_deg_choice_p
 
 # Choice versus yoked combine the 3 plots
-figS3B <- expt2_deg_choice_shift_ps +
+figS1B <- expt2_deg_choice_shift_ps +
   expt2_deg_choice_p +
   expt2_deg_choice_psf[[1]] +
   patchwork::plot_layout(ncol = 1)
-figS3B
+figS1B
 
 
 # Timing goal choice shift function
@@ -512,18 +512,18 @@ expt2_ms_choice_p <- rogme::plot_hd_links(
 expt2_ms_choice_p
 
 # Choice versus yoked combine the 3 plots
-figS4B <- expt2_ms_choice_shift_ps +
+figS2B <- expt2_ms_choice_shift_ps +
   expt2_ms_choice_p +
   expt2_ms_choice_psf[[1]] +
   patchwork::plot_layout(ncol = 1)
-figS4B
+figS2B
 
 
 # MULTIPANEL PLOTS FOR SUPPLEMENTARY
 #
-figS3 <- figS3A | figS3B
-figS3
+figS1 <- figS1A | figS1B
+figS1
 
-figS4 <- figS4A | figS4B
-figS4
+figS2 <- figS2A | figS2B
+figS2
 

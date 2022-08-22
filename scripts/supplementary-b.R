@@ -10,7 +10,7 @@
 #   Brad McKay
 #   Mike Carter
 #
-# Last update: August 14 2022
+# Last update: August 21 2022
 #
 # Website: https://www.cartermaclab.org
 # -------------------------------------------
@@ -269,7 +269,7 @@ expt2_estimation_pre_g <- expt2_estimation_pre_p %>%
 # in pre-test and those who were not asked to compare acquisition performance
 expt2_performance_est_tib <- expt2_performance_est_data %>%
   dplyr::mutate(est_id = dplyr::if_else(phase_id == 0, 1, 2)) %>%
-  dplyr::mutate(block_id = rep(rep(1:9, each = 12), 152)) %>%
+  dplyr::mutate(block_id = rep(rep(1:9, each = 12), 76)) %>%
   dplyr::mutate(ce2_deg = dplyr::if_else(phase_id != 4, (xi_deg - 40)^2,
                                          (xi_deg - 60)^2)) %>%
   dplyr::mutate(ce2_ms = (xi_ms - 225)^2)
@@ -530,7 +530,7 @@ expt1_ykg_ee_p <- expt1_estimation_all_p %>%
 
 
 # Spatial goal
-figS1_sce_deg <- ggplot2::ggplot(
+figS3_sce_deg <- ggplot2::ggplot(
   expt1_sce_ee_p,
   aes(x = phase_id,
       y = p_mean_ee_deg,
@@ -579,7 +579,7 @@ figS1_sce_deg <- ggplot2::ggplot(
     axis.text.x = element_blank()
   )
 
-figS1_scg_deg <- ggplot2::ggplot(
+figS3_scg_deg <- ggplot2::ggplot(
   expt1_scg_ee_p,
   aes(x = phase_id,
       y = p_mean_ee_deg,
@@ -628,7 +628,7 @@ figS1_scg_deg <- ggplot2::ggplot(
     axis.text.x = element_blank()
   )
 
-figS1_yke_deg <- ggplot2::ggplot(
+figS3_yke_deg <- ggplot2::ggplot(
   expt1_yke_ee_p,
   aes(x = phase_id,
       y = p_mean_ee_deg,
@@ -676,7 +676,7 @@ figS1_yke_deg <- ggplot2::ggplot(
     legend.position = "none"
   )
 
-figS1_ykg_deg <- ggplot2::ggplot(
+figS3_ykg_deg <- ggplot2::ggplot(
   expt1_ykg_ee_p,
   aes(x = phase_id,
       y = p_mean_ee_deg,
@@ -726,7 +726,7 @@ figS1_ykg_deg <- ggplot2::ggplot(
 
 
 # Timing goal
-figS2_sce_ms <- ggplot2::ggplot(
+figS4_sce_ms <- ggplot2::ggplot(
   expt1_sce_ee_p,
   aes(x = phase_id,
       y = p_mean_ee_ms,
@@ -775,7 +775,7 @@ figS2_sce_ms <- ggplot2::ggplot(
     axis.text.x = element_blank()
   )
 
-figS2_scg_ms <- ggplot2::ggplot(
+figS4_scg_ms <- ggplot2::ggplot(
   expt1_scg_ee_p,
   aes(x = phase_id,
       y = p_mean_ee_ms,
@@ -824,7 +824,7 @@ figS2_scg_ms <- ggplot2::ggplot(
     axis.text.x = element_blank()
   )
 
-figS2_yke_ms <- ggplot2::ggplot(
+figS4_yke_ms <- ggplot2::ggplot(
   expt1_yke_ee_p,
   aes(x = phase_id,
       y = p_mean_ee_ms,
@@ -872,7 +872,7 @@ figS2_yke_ms <- ggplot2::ggplot(
     legend.position = "none"
   )
 
-figS2_ykg_ms <- ggplot2::ggplot(
+figS4_ykg_ms <- ggplot2::ggplot(
   expt1_ykg_ee_p,
   aes(x = phase_id,
       y = p_mean_ee_ms,
@@ -931,7 +931,7 @@ expt2_ykb_ee_p <- expt2_estimation_all_p %>%
   dplyr::filter(group_id == 6)
 
 # Spatial goal
-figS1_scb_deg <- ggplot2::ggplot(
+figS3_scb_deg <- ggplot2::ggplot(
   expt2_scb_ee_p,
   aes(x = phase_id,
       y = p_mean_ee_deg,
@@ -980,7 +980,7 @@ figS1_scb_deg <- ggplot2::ggplot(
     axis.text.x = element_blank()
   )
 
-figS1_ykb_deg <- ggplot2::ggplot(
+figS3_ykb_deg <- ggplot2::ggplot(
   expt2_ykb_ee_p,
   aes(x = phase_id,
       y = p_mean_ee_deg,
@@ -1029,7 +1029,7 @@ figS1_ykb_deg <- ggplot2::ggplot(
   )
 
 # Timing goal
-figS2_scb_ms <- ggplot2::ggplot(
+figS4_scb_ms <- ggplot2::ggplot(
   expt2_scb_ee_p,
   aes(x = phase_id,
       y = p_mean_ee_ms,
@@ -1078,7 +1078,7 @@ figS2_scb_ms <- ggplot2::ggplot(
     axis.text.x = element_blank()
   )
 
-figS2_ykb_ms <- ggplot2::ggplot(
+figS4_ykb_ms <- ggplot2::ggplot(
   expt2_ykb_ee_p,
   aes(x = phase_id,
       y = p_mean_ee_ms,
@@ -1128,12 +1128,12 @@ figS2_ykb_ms <- ggplot2::ggplot(
 
 
 # MULTIPANEL FIGURES
-figS1 <- (figS1_sce_deg / figS1_yke_deg) |
-         (figS1_scg_deg / figS1_ykg_deg) |
-         (figS1_scb_deg / figS1_ykb_deg)
-figS1
+figS3 <- (figS3_sce_deg / figS3_yke_deg) |
+         (figS3_scg_deg / figS3_ykg_deg) |
+         (figS3_scb_deg / figS3_ykb_deg)
+figS3
 
-figS2 <- (figS2_sce_ms / figS2_yke_ms) |
-         (figS2_scg_ms / figS2_ykg_ms) |
-         (figS2_scb_ms / figS2_ykb_ms)
-figS2
+figS4 <- (figS4_sce_ms / figS4_yke_ms) |
+         (figS4_scg_ms / figS4_ykg_ms) |
+         (figS4_scb_ms / figS4_ykb_ms)
+figS4
